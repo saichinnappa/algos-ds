@@ -1,4 +1,4 @@
-package com.datastructures.linkedlists.impl;
+package com.datastructures.linkedlists.singly.impl;
 
 public class Node {
 
