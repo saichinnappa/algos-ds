@@ -79,22 +79,17 @@ class SinglyLinkedList {
     }
 
     void reverse() {
-        Node current = head;
-        Node previous = null;
-        Node next = null;
-        while (current != null) {
-            next = current.next; // 1
-            System.out.println(next.data);
-            current.next = previous; //null
-            System.out.println(current.next);
-            previous = current; // 0
-            System.out.println(previous.data);
-            current = next; // 1
-            System.out.println(current.data);
+        Node current = head; //start traversing from head
+        Node next = null; // next node set to null
+        Node previous = null; // previous node set to null
+        while (current != null) { // traverse the list until the current node is null i.e. end of list
+            next = current.next; // store the next value of current
+            current.next = previous; // reverse the link here - next value of current must be previous
+            previous = current; // previous moves to current
+            current = next; // current moves to next
         }
-        //Linking Head Node with the new First Element
+        this.head = previous; // at the end head of the list will be previous
         print();
-
     }
 
     void print() {
