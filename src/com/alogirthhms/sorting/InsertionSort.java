@@ -16,20 +16,20 @@ public class InsertionSort {
 
     public static void main(String[] args) {
         int[] unsortedArray = {5, 4, 3, 2, 1};
-        int[] sortedArray = sortArray(unsortedArray, unsortedArray.length);
+        int[] sortedArray = sortArray(unsortedArray);
         System.out.println(Arrays.toString(sortedArray));
 
     }
 
-    private static int[] sortArray(int[] unsortedArray, int length) {
-        for (int i = 1; i < unsortedArray.length; i++) {
-            int elementToBeSorted = unsortedArray[i];
-            int j = i - 1;
+    private static int[] sortArray(int[] unsortedArray) {
+        for (int i = 1; i < unsortedArray.length; i++) { //start from first position of the array till the end
+            int elementToBeSorted = unsortedArray[i]; //element to be sorted
+            int j = i - 1; //decrement i value to start comparing from immediate left to the element to be sorted
             while (j != -1 && elementToBeSorted < unsortedArray[j]) {
                 int temp = unsortedArray[j];
                 unsortedArray[j] = unsortedArray[i];
                 unsortedArray[i] = temp;
-                j--;
+                j--;  //to move left decrement j
                 i--;
             }
         }
