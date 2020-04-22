@@ -22,13 +22,11 @@ public class DoublyLinkedList {
     }
 
     void insertAtHead(DLLNode newNode) {
-        if (head == null) {
-            this.head = newNode;
-        } else {
+        if (head != null) {
             newNode.next = this.head;
             this.head.prev = newNode;
-            this.head = newNode;
         }
+        this.head = newNode;
     }
 
     void delete(DLLNode delNode) {
@@ -37,6 +35,16 @@ public class DoublyLinkedList {
             this.head = this.head.next;
             this.head.prev = null;
         }
+    }
+
+    void deleteTail() {
+        DLLNode currentNode = head;
+        DLLNode tailNode = null;
+        while (currentNode != null) {
+            tailNode = currentNode;
+            currentNode = currentNode.next;
+        }
+        tailNode.prev.next = null;
     }
 
     void print() {

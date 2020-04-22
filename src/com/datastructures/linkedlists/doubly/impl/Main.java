@@ -21,5 +21,8 @@ public class Main {
         doublyLinkedList.insertAtHead(dllNode4);
         doublyLinkedList.insertAtHead(dllNode5);
         doublyLinkedList.print();
+        doublyLinkedList.deleteTail();
+        System.out.println("\nDelete tail node");
+        doublyLinkedList.print();
     }
 }
