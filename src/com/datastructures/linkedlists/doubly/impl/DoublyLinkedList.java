@@ -4,18 +4,30 @@ public class DoublyLinkedList {
 
     DLLNode head;
 
-    void insert(DLLNode newNode) {
-        System.out.println(newNode.next);
+    void insertAtEnd(DLLNode newNode) {
         DLLNode currentNode = head;
         if (head == null) {
-            newNode.prev = null;
             this.head = newNode;
         } else {
-            while (currentNode.next != null) {
-                currentNode = currentNode.next;
-                currentNode.next = newNode;
-                newNode.prev = currentNode;
+            while (currentNode != null) { //loop until the end of the list
+                if (currentNode.next == null) { //if last node
+                    currentNode.next = newNode; //previous node next equals new node
+                    newNode.prev = currentNode; // new node previous equals last node
+                    currentNode = newNode.next; //move the current node pointer to new node
+                } else { //if not last node
+                    currentNode = currentNode.next; //just move the pointer to the next node
+                }
             }
+        }
+    }
+
+    void insertAtHead(DLLNode newNode) {
+        if (head == null) {
+            this.head = newNode;
+        } else {
+            newNode.next = this.head;
+            this.head.prev = newNode;
+            this.head = newNode;
         }
     }
 
@@ -30,7 +42,7 @@ public class DoublyLinkedList {
     void print() {
         DLLNode currentNode = head;
         DLLNode lastNode = null;
-        System.out.print("\nForward:\n");
+        System.out.print("Forward:\n");
         System.out.print("null->");
         while (currentNode != null) {
             if (currentNode.next == null)
