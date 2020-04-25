@@ -2,10 +2,15 @@ package com.alogirthhms.sorting;
 
 import java.util.Arrays;
 
+/**
+ * Merge Sort
+ * Time Complexity: O(nlogn) - since the array will be repeatedly broken to halves
+ * Space Complexity: O(n)
+ */
 public class MergeSort {
 
     public static void main(String[] args) {
-        int[] unsortedArray = {4, 3, 5, 1};
+        int[] unsortedArray = {4, 3, 5, 1, 6};
         mergeSort(unsortedArray);
         System.out.println(Arrays.toString(unsortedArray));
     }
@@ -18,12 +23,10 @@ public class MergeSort {
             return;
         int[] leftArray = new int[mid]; //Create left array
         int[] rightArray = new int[length - mid]; // create right array
-        for (int i = 0; i < leftArray.length; i++) { //populate with left side of unsorted array
-            leftArray[i] = unsortedArray[i];
-        }
-        for (int j = 0; j < rightArray.length; j++) { //populate with right side of the unsorted array
-            rightArray[j] = unsortedArray[mid + j];
-        }
+        //populate with left side of unsorted array
+        System.arraycopy(unsortedArray, 0, leftArray, 0, leftArray.length);
+        //populate with right side of the unsorted array
+        if (rightArray.length >= 0) System.arraycopy(unsortedArray, mid, rightArray, 0, rightArray.length);
         mergeSort(leftArray);
         mergeSort(rightArray);
         merge(unsortedArray, leftArray, rightArray);
