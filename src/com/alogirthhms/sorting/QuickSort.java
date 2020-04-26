@@ -13,7 +13,7 @@ import java.util.Arrays;
  */
 public class QuickSort {
     public static void main(String[] args) {
-        int[] unsortedArray = {0, 1, 2, 3, 3, 4, 4, 4, 5, 7, 8, 99};
+        int[] unsortedArray = {99, 1, 2, 3, 3, 4, 4, 4, 5, 7, 8, 99};
         quickSort(unsortedArray, 0, unsortedArray.length - 1);
         System.out.println(Arrays.toString(unsortedArray));
     }
@@ -22,10 +22,10 @@ public class QuickSort {
 
         if (start < end) {
             int pivotIndex = partitionArray(unsortedArray, start, end);
+            System.out.println(pivotIndex);
             quickSort(unsortedArray, 0, pivotIndex - 1);
             quickSort(unsortedArray, pivotIndex + 1, end);
         }
-
     }
 
     private static int partitionArray(int[] unsortedArray, int start, int end) {

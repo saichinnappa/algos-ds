@@ -15,10 +15,16 @@ public class HeapSort {
 
     public static void main(String[] args) {
         int[] unsortedArray = {3, 1, 5, 4, 6, 13, 10, 9, 16, 15, 17};
+        insertNode(unsortedArray, 100);
+        // BUILD MAX HEAP
         buildHeap(unsortedArray, "max");
         System.out.println("MAX-HEAP:\n" + Arrays.toString(unsortedArray));
-        buildHeap(unsortedArray, "min");
-        System.out.println("MIN-HEAP:\n" + Arrays.toString(unsortedArray));
+        //BUILD MIN HEAP
+//        buildHeap(unsortedArray, "min");
+//        System.out.println("MIN-HEAP:\n" + Arrays.toString(unsortedArray));
+        //DELETE ROOT ELEMENT
+        deleteRoot(unsortedArray, unsortedArray.length);
+        System.out.println("After deletion:\n" + Arrays.toString(unsortedArray));
     }
 
     private static void buildHeap(int[] unsortedArray, String heapType) {
@@ -74,6 +80,26 @@ public class HeapSort {
             unsortedArray[root] = temp;
             maxHeapify(unsortedArray, arrayLength, largest);
         }
+    }
 
+    static void deleteRoot(int[] unsortedArray, int length) {
+        int lastNode = unsortedArray[length - 1];
+        unsortedArray[length - 1] = unsortedArray[0];
+        unsortedArray[0] = lastNode;
+        length = length - 1;
+        maxHeapify(unsortedArray, length, 0);
+        if (length > 1) {
+            deleteRoot(unsortedArray, length);
+        }
+    }
+
+    //Copy all the elements to new array and add new node as the leaf node i.e end of the array and create a max heap
+    static void insertNode(int[] unsortedArray, int newNode) {
+        int[] newUnsortedArray = Arrays.copyOf(unsortedArray, unsortedArray.length + 1);
+        newUnsortedArray[unsortedArray.length] = newNode;
+        buildHeap(newUnsortedArray, "max");
+        System.out.println(Arrays.toString(newUnsortedArray));
+        deleteRoot(newUnsortedArray, newUnsortedArray.length);
+        System.out.println(Arrays.toString(newUnsortedArray));
     }
 }
