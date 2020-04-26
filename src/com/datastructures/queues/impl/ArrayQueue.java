@@ -1,48 +1,53 @@
 package com.datastructures.queues.impl;
 
- class ArrayQueue {
+class ArrayQueue {
+    int[] queue;
+    int front;
+    int rear;
+    int maxSize;
+    int currentSize;
 
-    int front = 0;
-    int rear = -1;
-    int[] queueArray;
-    int size;
-
-    ArrayQueue(int size){
-        queueArray = new int[size];
-        this.size = size;
+    ArrayQueue(int size) {
+        queue = new int[size];
+        this.maxSize = size;
+        front = 0;
+        rear = 0;
+        currentSize = 0;
     }
 
-    boolean isFull(){
-        return size-1 == rear;
+    boolean isFull() {
+        return currentSize == maxSize;
     }
 
-    boolean isEmpty(){
-        return rear == -1;
+    boolean isEmpty() {
+        return front == 0 && rear == 0;
     }
 
-    void enqueue(int val){
-        if(!isFull()){
-            queueArray[++rear] = val;
-        } else{
-            System.out.println("Queue is full.");
+    void enqueue(int val) {
+        if (!isFull()) {
+            queue[rear++] = val;
+            currentSize++;
+        } else {
+            System.out.println("Queue is full!");
         }
     }
 
-    int dequeue(){
-        if(!isEmpty()){
-            for(int i=0; i<rear; i++){
-                queueArray[i] = queueArray[i+1];
-            }
+    void dequeue() {
+        if (!isEmpty()) {
+            currentSize--;
             rear--;
-            return queueArray[front];
-        } else{
-            return -1;
+            for (int i = 0; i < currentSize; i++) {
+                queue[i] = queue[i + 1];
+            }
+        } else {
+            System.out.println("Queue is empty!");
         }
     }
 
-    void print(){
-        for(int n: queueArray){
-            System.out.print(n+" ");
+    void print() {
+        for (int i = 0; i < currentSize; i++) {
+            System.out.print(queue[i] + " ");
         }
+        System.out.print("\n");
     }
 }

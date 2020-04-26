@@ -3,14 +3,18 @@ package com.datastructures.stacks.impl;
 public class Main {
 
     public static void main(String[] args) {
-        ArrayStack<Integer> arrayStack = new ArrayStack<>(5);
-        arrayStack.push(5);
-        arrayStack.push(4);
-        arrayStack.push(3);
-        arrayStack.push(2);
-        arrayStack.push(1);
-        System.out.println(arrayStack.pop());
-        System.out.println(arrayStack.pop());
-        System.out.println(arrayStack.pop());
+        ArrayStack<Integer> stack = new ArrayStack(5);
+        stack.push(50);
+        stack.push(30);
+        stack.push(40);
+        stack.push(20);
+        stack.push(10);
+        stack.print();
+        System.out.println(stack.pop());
+        System.out.println(stack.pop());
+        System.out.println(stack.pop());
+        stack.push(60);
+        System.out.println(stack.pop());
+        System.out.println(stack.pop());
     }
 }

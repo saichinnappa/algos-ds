@@ -1,53 +1,54 @@
 package com.datastructures.queues.impl;
 
+import java.util.Arrays;
+
 public class CircularQueue {
 
-    int front = -1;
-    int rear = -1;
-    int[] circularArrayQueue;
+    int[] queue;
+    int front;
+    int rear;
     int maxSize;
     int currentSize;
 
-    CircularQueue(int size){
-        this.circularArrayQueue = new int [size];
-        this.maxSize = size;
+    CircularQueue(int size) {
+        queue = new int[size];
+        maxSize = size;
+        front = -1;
+        rear = -1;
     }
 
-    boolean isEmpty(){
-        return (currentSize == 0);
+    boolean isFull() {
+        return currentSize == maxSize;
     }
 
-    boolean isFull(){
-        return currentSize == circularArrayQueue.length;
+    boolean isEmpty() {
+        return front == -1 && rear == -1;
     }
 
-    void enqueue(int val){
-        if (isFull()) {
-            System.out.println("Queue is full");
-        }
-        rear = (rear + 1) % circularArrayQueue.length;
-        circularArrayQueue[rear] = val;
-        currentSize++;
-        if (front == -1) {
-            front = rear;
-        }
-    }
-
-    int dequeue(){
-        if (isEmpty()) {
-            System.out.println("Queue is empty");
-        }
-        int deQueuedElement = circularArrayQueue[front];
-        front = (front + 1) % circularArrayQueue.length;
-        currentSize--;
-        return deQueuedElement;
-    }
-
-    void print(){
-        for(int n : circularArrayQueue){
-            System.out.print(n+" ");
+    void enqueue(int value) {
+        if (!isFull()) {
+            rear = (rear + 1) % maxSize;
+            queue[rear] = value;
+            currentSize++;
+            if (front == -1) {
+                front = rear;
+            }
+        } else {
+            System.out.println("Queue is full!");
         }
     }
 
+    void dequeue() {
+        if (!isEmpty()) {
+            System.out.println("Dequeued Element: " + queue[front]);
+            front = (front + 1) % maxSize;
+            currentSize--;
+        } else {
+            System.out.println("Queue is empty!");
+        }
+    }
 
+    void print() {
+        System.out.println(Arrays.toString(queue));
+    }
 }
