@@ -12,17 +12,14 @@ public class Main {
         doublyLinkedList.insertAtEnd(dllNode3);
         System.out.println("Insert at end");
         doublyLinkedList.print();
-        System.out.println("\nDelete Node 1");
-        doublyLinkedList.delete(dllNode1);
+        System.out.println("Insert at head");
+        DLLNode dllNode0 = new DLLNode(0);
+        doublyLinkedList.insertArHead(dllNode0);
         doublyLinkedList.print();
-        System.out.println("\nInsert at head");
-        DLLNode dllNode4 = new DLLNode(4);
-        DLLNode dllNode5 = new DLLNode(5);
-        doublyLinkedList.insertAtHead(dllNode4);
-        doublyLinkedList.insertAtHead(dllNode5);
+        doublyLinkedList.findPrevAndNextNodes(dllNode2);
+        doublyLinkedList.deleteAtLocation(dllNode0);
         doublyLinkedList.print();
-        doublyLinkedList.deleteTail();
-        System.out.println("\nDelete tail node");
-        doublyLinkedList.print();
+        doublyLinkedList.printReverse();
+
     }
 }

@@ -1,16 +1,13 @@
 package com.datastructures.linkedlists.doubly.impl;
 
-public class DLLNode {
-
+class DLLNode {
     int data;
-    DLLNode next;
-    DLLNode prev;
+    DLLNode prevNode;
+    DLLNode nextNode;
 
     DLLNode(int data) {
         this.data = data;
-        this.next = null;
-        this.prev = null;
+        this.prevNode = null;
+        this.nextNode = null;
     }
-
-
 }

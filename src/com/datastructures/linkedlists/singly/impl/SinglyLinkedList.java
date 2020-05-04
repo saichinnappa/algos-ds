@@ -1,18 +1,20 @@
 package com.datastructures.linkedlists.singly.impl;
 
 class SinglyLinkedList {
-
     Node head;
 
-    SinglyLinkedList(Node head) {
-        this.head = head;
+    void insertAtHead(Node newNode) {
+        if (this.head != null) {
+            newNode.next = this.head;
+        }
+        this.head = newNode;
     }
 
-    void insert(Node newNode) {
+    void insertAtEnd(Node newNode) {
         Node currentNode = head;
-        if (head == null)
+        if (head == null) {
             head = newNode;
-        else {
+        } else {
             while (currentNode.next != null) {
                 currentNode = currentNode.next;
             }
@@ -20,76 +22,59 @@ class SinglyLinkedList {
         }
     }
 
-    void insertAfter(Node previousNode, Node newNode) {
-        Node currentNode = head;
-        while (currentNode != null) {
-            if (currentNode.data == previousNode.data) {
-                newNode.next = currentNode.next;
-                currentNode.next = newNode;
-                break;
-            } else {
-                currentNode = currentNode.next;
-            }
-        }
-    }
-
-    void delete(Node delNode) {
-        Node prevNode = head;
-        Node nextNode = head.next;
-        if (head.data == delNode.data) {
-            head = nextNode;
+    void deleteHead() {
+        if (head == null) {
+            System.out.println("SLL is empty, nothing to delete.");
         } else {
-            while (nextNode != null) {
-                if (nextNode.data == delNode.data) {
-                    prevNode.next = delNode.next;
-                    break;
-                } else {
-                    prevNode = nextNode;
-                    nextNode = nextNode.next;
-                }
-            }
+            head = head.next;
         }
     }
 
-    boolean search(Node searchNode) {
+    void deleteTail() {
         Node currentNode = head;
-        if (head.data == searchNode.data)
-            return true;
-        else {
+        if (head == null) {
+            System.out.println("SLL is empty, nothing to delete.");
+        } else {
+            while (currentNode.next.next != null) {
+                currentNode = currentNode.next;
+            }
+            currentNode.next = null;
+        }
+    }
+
+    void deleteSelected(Node delNode) {
+        Node currentNode = head;
+        if (currentNode == null) {
+            System.out.println("SLL is empty, nothing to delete.");
+        } else if (currentNode.data == delNode.data) {
+            deleteHead();
+        } else {
+            Node previousNode = currentNode;
             while (currentNode != null) {
-                if (currentNode.data == searchNode.data) {
-                    return true;
+                if (currentNode.data == delNode.data) {
+                    previousNode.next = currentNode.next;
                 }
+                previousNode = currentNode;
                 currentNode = currentNode.next;
             }
         }
-        return false;
-    }
-
-    int length() {
-        Node currentNode = head;
-        if (head == null)
-            return -1;
-        int count = 0;
-        while (currentNode != null) {
-            count++;
-            currentNode = currentNode.next;
-        }
-        return count;
     }
 
     void reverse() {
-        Node current = head; //start traversing from head
-        Node next = null; // next node set to null
-        Node previous = null; // previous node set to null
-        while (current != null) { // traverse the list until the current node is null i.e. end of list
-            next = current.next; // store the next value of current
-            current.next = previous; // reverse the link here - next value of current must be previous
-            previous = current; // previous moves to current
-            current = next; // current moves to next
+        Node currentNode = head;
+        if (head == null) {
+            System.out.println("SLL is empty, nothing to reverse.");
+        } else {
+            Node previousNode = null;
+            Node nexNode = null;
+            while (currentNode != null) {
+                nexNode = currentNode.next;
+                currentNode.next = previousNode;
+                previousNode = currentNode;
+                currentNode = nexNode;
+            }
+            this.head = previousNode;
         }
-        this.head = previous; // at the end head of the list will be previous
-        print();
     }
 
     void print() {
@@ -98,6 +83,6 @@ class SinglyLinkedList {
             System.out.print(currentNode.data + "->");
             currentNode = currentNode.next;
         }
-        System.out.println("null");
+        System.out.print("null\n");
     }
 }

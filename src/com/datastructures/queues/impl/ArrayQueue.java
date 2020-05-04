@@ -1,13 +1,13 @@
 package com.datastructures.queues.impl;
 
-class ArrayQueue {
+public class ArrayQueue {
     int[] queue;
     int front;
     int rear;
     int maxSize;
     int currentSize;
 
-    ArrayQueue(int size) {
+    public ArrayQueue(int size) {
         queue = new int[size];
         this.maxSize = size;
         front = 0;
@@ -15,15 +15,15 @@ class ArrayQueue {
         currentSize = 0;
     }
 
-    boolean isFull() {
+    public boolean isFull() {
         return currentSize == maxSize;
     }
 
-    boolean isEmpty() {
+    public boolean isEmpty() {
         return front == 0 && rear == 0;
     }
 
-    void enqueue(int val) {
+    public void enqueue(int val) {
         if (!isFull()) {
             queue[rear++] = val;
             currentSize++;
@@ -32,16 +32,19 @@ class ArrayQueue {
         }
     }
 
-    void dequeue() {
+    public int dequeue() {
         if (!isEmpty()) {
             currentSize--;
             rear--;
+            int dequeuedElement = queue[0];
             for (int i = 0; i < currentSize; i++) {
                 queue[i] = queue[i + 1];
             }
+            return dequeuedElement;
         } else {
             System.out.println("Queue is empty!");
         }
+        return -1;
     }
 
     void print() {
