@@ -1,41 +1,41 @@
 package com.datastructures.stacks.impl;
 
-class ArrayStack<Integer> {
+public class ArrayStack<Integer> {
 
+    public int[] array;
+    public int top;
     private int maxSize;
-    private int top;
-    private int[] array;
 
     //initialize
-    ArrayStack(int maxSize) {
+    public ArrayStack(int maxSize) {
         this.maxSize = maxSize;
         array = new int[this.maxSize];
         top = -1;
     }
 
     //isEmpty
-    boolean isEmpty(){
+    public boolean isEmpty() {
         return top == -1;
     }
 
     //isFull
-    boolean isFull(){
-        return top == maxSize-1;
+    boolean isFull() {
+        return top == maxSize - 1;
     }
 
     //push
-    void push(int value){
-        if(!isFull())
+    public void push(int value) {
+        if (!isFull())
             array[++top] = value;
         else
-            System.out.println("STACK IS FULL: cannot push: "+ value);
+            System.out.println("STACK IS FULL: cannot push: " + value);
     }
 
     //pop
-    int pop(){
-        if(!isEmpty())
+    public int pop() {
+        if (!isEmpty())
             return array[top--];
-        else{
+        else {
             System.out.println("STACK IS EMPTY!");
             return top;
         }

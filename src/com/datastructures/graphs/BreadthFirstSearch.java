@@ -2,6 +2,10 @@ package com.datastructures.graphs;
 
 import com.datastructures.queues.impl.ArrayQueue;
 
+/**
+ * Breadth First Search
+ * Time Complexity:  O(V + E) [since it traverses every vertex and edge once]
+ */
 public class BreadthFirstSearch {
 
     static String bfsTraversal(Graph graph, int sourceVertex) {
