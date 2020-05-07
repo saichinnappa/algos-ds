@@ -4,6 +4,7 @@ import com.datastructures.stacks.impl.ArrayStack;
 
 /**
  * Depth First Search
+ * Time Complexity:  O(V + E) [since it traverses every vertex and edge once]
  */
 public class DepthFirstSearch {
 
