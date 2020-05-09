@@ -2,6 +2,9 @@ package com.datastructures.trees.impl;
 
 public class BinarySearchTree {
     Node root;
+    int counter = 0;
+    int leftTreeHeight = 0;
+    int rightTreeHeight = 0;
 
     /**
      * Pre traverse - ROOT -> LEFT -> RIGHT
@@ -31,6 +34,54 @@ public class BinarySearchTree {
         postTraverse(root.leftChild);
         postTraverse(root.rightChild);
         System.out.print(root.data + ",");
+    }
+
+    void findAncestors(Node root, int k) {
+        Node currentNode = root;
+        StringBuilder ancestors = new StringBuilder();
+        if (currentNode == null)
+            System.out.println("Tree is empty");
+        else {
+            while (currentNode != null) {
+                Node leftChild = currentNode.leftChild; //left child of tree
+                Node rightChild = currentNode.rightChild;//right child of tree
+                if (k > currentNode.data && rightChild != null) { //if value to be found is greater than parent,current node will be right child
+                    ancestors.append(currentNode.data + ",");
+                    currentNode = rightChild;
+                } else if (k < currentNode.data && leftChild != null) { // else current node will be left child
+                    ancestors.append(currentNode.data + ",");
+                    currentNode = leftChild;
+                } else { //if searching node equals current node, just point current node to left child
+                    currentNode = leftChild;
+                }
+
+            }
+        }
+        System.out.println("Ancestors of " + k + " are-> " + ancestors.toString());
+    }
+
+    void leftTreeHeight(Node root) {
+        if (root.leftChild != null) {
+            leftTreeHeight++;
+            leftTreeHeight(root.leftChild);
+        }
+    }
+
+    void rightTreeHeight(Node root) {
+        if (root.rightChild != null) {
+            rightTreeHeight++;
+            rightTreeHeight(root.rightChild);
+        }
+    }
+
+    int findTreeHeight(Node root) {
+        if (root == null) {
+            System.out.println("Tree is empty!");
+        } else {
+            leftTreeHeight(root);
+            rightTreeHeight(root);
+        }
+        return Math.max(leftTreeHeight, rightTreeHeight);
     }
 
     boolean add(int val) {
@@ -124,6 +175,23 @@ public class BinarySearchTree {
         } else {
             return findMinRecursive(root.leftChild); //keep traversing left child until the leaf node, the left most leaf node will be having minimum value
         }
+    }
+
+    Node findKthMax(Node root, int k) {
+        if (root == null) {
+            return null;
+        }
+        Node node = findKthMax(root.rightChild, k);
+        if (counter != k) {
+            counter++;
+            node = root;
+        }
+        if (counter == k) {
+            return node;
+        } else {
+            return findKthMax(root.leftChild, k);
+        }
+
     }
 
     boolean delete(int val) {
