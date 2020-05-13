@@ -14,17 +14,17 @@ import java.util.Arrays;
 public class HeapSort {
 
     public static void main(String[] args) {
-        int[] unsortedArray = {3, 1, 5, 4, 6, 13, 10, 9, 16, 15, 17};
+        int[] unsortedArray = {9, 4, 7, 1, -2, 6, 5};
         insertNode(unsortedArray, 100);
         // BUILD MAX HEAP
-        buildHeap(unsortedArray, "max");
+        buildHeap(unsortedArray, "min");
         System.out.println("MAX-HEAP:\n" + Arrays.toString(unsortedArray));
         //BUILD MIN HEAP
 //        buildHeap(unsortedArray, "min");
 //        System.out.println("MIN-HEAP:\n" + Arrays.toString(unsortedArray));
         //DELETE ROOT ELEMENT
-        deleteRoot(unsortedArray, unsortedArray.length);
-        System.out.println("After deletion:\n" + Arrays.toString(unsortedArray));
+//        deleteRoot(unsortedArray, unsortedArray.length);
+//        System.out.println("After deletion:\n" + Arrays.toString(unsortedArray));
     }
 
     private static void buildHeap(int[] unsortedArray, String heapType) {
