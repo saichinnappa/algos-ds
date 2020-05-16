@@ -1,14 +1,14 @@
 package com.datastructures.linkedlists.singly.impl;
 
-class SinglyLinkedList {
+public class SinglyLinkedList {
 
-    Node head;
+    public Node head;
 
-    SinglyLinkedList(Node head) {
+    public SinglyLinkedList(Node head) {
         this.head = head;
     }
 
-    void insert(Node newNode) {
+    public void insert(Node newNode) {
         Node currentNode = head;
         if (head == null)
             head = newNode;
@@ -92,7 +92,7 @@ class SinglyLinkedList {
         print();
     }
 
-    void print() {
+    public void print() {
         Node currentNode = head;
         while (currentNode != null) {
             System.out.print(currentNode.data + "->");
