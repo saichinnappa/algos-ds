@@ -4,14 +4,16 @@ public class CycleDetection {
     public static void main(String[] args) {
         Graph graph = new Graph(4);
         graph.insertEdge(0, 1);
-        graph.insertEdge(1, 2);
+        graph.insertEdge(0, 2);
+        graph.insertEdge(1, 0);
         graph.insertEdge(1, 3);
-        graph.insertEdge(2, 3);
+        graph.insertEdge(1, 4);
         graph.printGraph();
         System.out.println(detectCycle(graph));
     }
 
     /**
+     * #########  NOT WORKING ###########
      * If a head node of a vertex is already visited then there is a cycle
      */
     static boolean detectCycle(Graph graph) {
