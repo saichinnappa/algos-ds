@@ -4,24 +4,12 @@ import java.util.*;
 
 public class Miscelleneous {
 
-
     public static void main(String[] args) {
-        int[][] matrix = {{7, 8}, {1, 2}};
-
-//        int[][] matrix = {
-//                {
-//                        1, 10, 4, 2
-//                }, {
-//                9, 3, 8, 7
-//        }, {
-//                15, 16, 17, 12
-//        }
-//        };
-//        int[][] matrix = {{56216}, {63251}, {75772}, {1945}, {27014}};
-//        System.out.println(Arrays.toString(luckyNumbers(matrix).toArray()));
-
-        int[] nums = {1, 4, 3, 2};
-        System.out.println(arrayPairSum(nums));
+//        int[][] matrix = {{7, 8}, {1, 2}};
+//        int[] nums = {1, 4, 3, 2};
+//        System.out.println(arrayPairSum(nums));
+        Miscelleneous miscelleneous = new Miscelleneous();
+        System.out.println(miscelleneous.hammingDistance(14, 4));
     }
 
     public static int[] diStringMatch(String S) {
@@ -86,4 +74,16 @@ public class Miscelleneous {
         }
         return sum;
     }
+
+    public int hammingDistance(int x, int y) {
+        int xor = x ^ y; //get the difference, which has bit difference as well
+        int distance = 0;
+        while (xor != 0) { // keep iterating until the xor value is 0
+            if (xor % 2 == 1) //if last bit is 1, then we found a difference
+                distance += 1;
+            xor = xor >> 1; //keep doing right shift, so all 1's will be pushed to right most.
+        }
+        return distance;
+    }
+
 }

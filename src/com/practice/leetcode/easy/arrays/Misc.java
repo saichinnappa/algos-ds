@@ -10,8 +10,10 @@ public class Misc {
 //        intersection3Arrays(arr1, arr2, arr3);
 //        int[] arr = {2, 1, 2, 1, 1, 2, 2, 1};
 //        transformArray(arr);
-
-
+        int[] nums = {4, 10, 2, 6, 1};
+//        int[] nums = {8, 8};
+//        int[] nums = {1, 7, 4, 7, 1, 9, 4, 8, 8};
+        System.out.println(Arrays.toString(minSubsequence(nums).toArray()));
     }
 
     static List<Integer> intersection3Arrays(int[] arr1, int[] arr2, int[] arr3) {
@@ -102,5 +104,25 @@ public class Misc {
         }
     }
 
+    public static List<Integer> minSubsequence(int[] nums) {
+        List<Integer> result = new ArrayList<>();
+        if (nums.length == 1) {
+            result.add(nums[0]);
+            return result;
+        } else {
+            Arrays.sort(nums);
+            int sum = 0, newSum = 0;
+            for (int i : nums) {
+                sum += i;
+            }
+            for (int j = nums.length - 1; j >= 0; j--) {
+                result.add(nums[j]);
+                newSum += nums[j];
+                if (newSum > sum - newSum)
+                    return result;
+            }
+        }
+        return result;
+    }
 
 }

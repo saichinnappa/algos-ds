@@ -1,14 +1,13 @@
 package com.datastructures.trees.impl;
 
 public class Node {
-    int data;
+    int value;
     Node leftChild;
     Node rightChild;
 
-    Node(int value) {
-        this.data = value;
+    Node(int data) {
+        this.value = data;
         this.leftChild = null;
         this.rightChild = null;
     }
-
 }
