@@ -1,0 +1,7 @@
+### Math
+1. Number of digits in a number: (int) (Math.log10(N) + 1)
+2. Number of combinations given a string: n*(n+1)/2
+3. Convert an integer to char: (char) int
+4. Convert a char to an integer: (int) char
+5. Decimal values starts from: A->65 , a-> 97
+6. Converting integer to binary String: Integer.toBinaryString(int i)

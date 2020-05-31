@@ -1,4 +1,4 @@
-package com.leetcode.easy;
+package com.practice.leetcode.easy;
 
 /**
  * 1360
@@ -29,24 +29,35 @@ package com.leetcode.easy;
  */
 public class IncreasingDecreasingString {
     public static void main(String[] args) {
+        String s = "aaaabbbbcccc";
         increasingDecreasingString("aaaabbbbcccc");
+
     }
 
     private static void increasingDecreasingString(String s) {
-        String alphabets = "abcdefghijklmnopqrstuvwxyz";
-//        char[] charArray = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
-        String result;
-        int previousVal = 0;
-        int currentVal = -1;
-        for (char c : s.toCharArray()) {
-            currentVal = alphabets.indexOf(c);
-            if (previousVal < currentVal) {
-
-            } else {
-
-            }
+        int[] alphabetCount = new int[26];
+        for (int index = 0; index < s.length(); index++) {
+            alphabetCount[s.charAt(index) - 'a']++;
         }
-
-
+        StringBuilder result = new StringBuilder();
+        int count = 0;
+        while (count != s.length()) {
+            for (int i = 0; i < 26; i++) {
+                if (alphabetCount[i] > 0) {
+                    result.append((char) (97 + i));
+                    alphabetCount[i]--;
+                }
+            }
+            for (int i = 25; i >= 0; i--) {
+                if (alphabetCount[i] > 0) {
+                    result.append((char) (97 + i));
+                    alphabetCount[i]--;
+                }
+            }
+            count++;
+        }
+        System.out.println(result.toString());
     }
+
+
 }
