@@ -9,7 +9,8 @@ public class Solution {
 //        System.out.println(solution.isUnique("abcde"));
 //        System.out.println(solution.inplaceReverse("hello"));
 //        System.out.println(solution.replaceSpaces("Mr John Smith    ", 13));
-        System.out.println(solution.isCombinationUsingCharacterCount("abc", "cba"));
+//        System.out.println(solution.isCombinationUsingCharacterCount("abc", "cba"));
+        System.out.println(solution.compress("aabcccccaaa"));
     }
 
     public boolean isUnique(String s) {
@@ -92,6 +93,23 @@ public class Solution {
                 return false;
         }
         return true;
+    }
+
+    String compress(String word) {
+        StringBuilder string = new StringBuilder();
+        char[] charArray = word.toCharArray();
+        int count = 1;
+        for (int i = 0; i < charArray.length - 1; i++) {
+            if (charArray[i] != charArray[i + 1]) {
+                string.append(charArray[i]);
+                string.append(count);
+                count = 0;
+            }
+            count++;
+        }
+        string.append(charArray[charArray.length - 1]);
+        string.append(count);
+        return string.toString().length() > word.length() ? word : string.toString();
     }
 
 
