@@ -10,10 +10,12 @@ public class Misc {
 //        intersection3Arrays(arr1, arr2, arr3);
 //        int[] arr = {2, 1, 2, 1, 1, 2, 2, 1};
 //        transformArray(arr);
-        int[] nums = {4, 10, 2, 6, 1};
+//        int[] nums = {4, 10, 2, 6, 1};
 //        int[] nums = {8, 8};
 //        int[] nums = {1, 7, 4, 7, 1, 9, 4, 8, 8};
-        System.out.println(Arrays.toString(minSubsequence(nums).toArray()));
+//        System.out.println(Arrays.toString(minSubsequence(nums).toArray()));
+        int[] arr = {1, 2, 2, 1, 1, 3};
+        System.out.println(uniqueOccurrences(arr));
     }
 
     static List<Integer> intersection3Arrays(int[] arr1, int[] arr2, int[] arr3) {
@@ -125,4 +127,13 @@ public class Misc {
         return result;
     }
 
+    public static boolean uniqueOccurrences(int[] arr) {
+
+        Map<Integer, Integer> countMap = new HashMap<>();
+        for (int value : arr) {
+            countMap.put(value, countMap.getOrDefault(value, 0) + 1);
+        }
+        Set<Integer> countSet = new HashSet<>(countMap.values());
+        return countMap.size() == countSet.size();
+    }
 }
