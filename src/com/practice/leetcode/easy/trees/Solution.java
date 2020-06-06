@@ -33,7 +33,7 @@ public class Solution {
 //        System.out.println(Arrays.toString(solution.postorder(root).toArray()));
 
         TreeNode root = new TreeNode();
-        root.val = 63;
+        root.val = 5;
         TreeNode node1 = new TreeNode();
         node1.val = 20;
         TreeNode node2 = new TreeNode();
@@ -48,7 +48,25 @@ public class Solution {
         node1.right = node3;
 
         node3.right = node4;
-        System.out.println(solution.searchBST(root, 63).val);
+        System.out.println(solution.increasingBST(root));
+    }
+
+    public TreeNode increasingBST(TreeNode root) {
+        List<Integer> vals = new ArrayList();
+        inorder(root, vals);
+        TreeNode ans = new TreeNode(0), cur = ans;
+        for (int v : vals) {
+            cur.right = new TreeNode(v);
+            cur = cur.right;
+        }
+        return ans.right;
+    }
+
+    public void inorder(TreeNode node, List<Integer> vals) {
+        if (node == null) return;
+        inorder(node.left, vals);
+        vals.add(node.val);
+        inorder(node.right, vals);
     }
 
     public List<Integer> postorder(Node root) {

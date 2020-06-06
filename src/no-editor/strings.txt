@@ -92,3 +92,22 @@ String compress(String word){
      }
      return string.toString().length() > word.length() ? word : string.string();
 }
+
+-- isSubstring: After Rotation, if the string is a valid rotation of original string
+boolean isSubstring(String s1, String s2){
+  char firstChar = s1.charAt(0);
+  StringBuilder result = new StringBuilder();
+  int firstCharIndexRotatedString = -1;
+  for(int i=0; i< s2.charArray().length; i++){
+    if(charArray[i] == firstChar){
+      firstCharIndexRotatedString = i;
+    }
+  }
+  if(firstCharIndexRotatedString == -1){
+    return false;
+  } else{
+    result.append(s2.subString(s2.charAt(firstCharIndexRotatedString), s2.length));
+    result.append(s2.subString(0, s2.charAt(firstCharIndexRotatedString)));
+  }
+  return result.toString() == s1;
+}

@@ -1,0 +1,19 @@
+--Find zero in a M*N matrtix, and set entire row and column to zero
+void findAndSetZero(int[][] matrix){
+  for(int i=0;i<matrix.length;i++){ //get all rows in matrix
+    for(int j=0;j<matrix[i].length;j++){ //get all columns w.r.t the row
+      if(matrix[i][j] == 0){
+        int rowIndex = 0;
+        int colIndex = 0;
+        while(!colIndex > matrix[i].length){ //iterate complete until colIndex reaches the length of the row
+          matrix[i][colIndex] = 0;
+          colIndex++;
+        }
+        while(!rowIndex > matrix.length){ //iterate all rows until rowIndex reaches matrix length
+          matrix[rowIndex][j] = 0;
+          rowIndex++;
+        }
+      }
+    }
+  }
+}

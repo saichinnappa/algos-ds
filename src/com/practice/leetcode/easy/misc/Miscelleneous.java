@@ -9,7 +9,8 @@ public class Miscelleneous {
 //        int[] nums = {1, 4, 3, 2};
 //        System.out.println(arrayPairSum(nums));
         Miscelleneous miscelleneous = new Miscelleneous();
-        System.out.println(miscelleneous.hammingDistance(14, 4));
+//        System.out.println(miscelleneous.countPrimes(10));
+        System.out.println(miscelleneous.getSum(2, 3));
     }
 
     public static int[] diStringMatch(String S) {
@@ -86,4 +87,20 @@ public class Miscelleneous {
         return distance;
     }
 
+    public int countPrimes(int n) {
+        boolean[] isMultipleOfPrime = new boolean[n];
+        int count = 0;
+        for (int i = 2; i < n; i++) {
+            if (!isMultipleOfPrime[i])
+                count++;
+            for (int k = i; k < n; k = k + i) {
+                isMultipleOfPrime[k] = true;
+            }
+        }
+        return count;
+    }
+
+    public int getSum(int a, int b) {
+        return a ^ b;
+    }
 }

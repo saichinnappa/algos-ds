@@ -1,35 +1,34 @@
-package com.leetcode.easy;
+package com.practice.leetcode.easy;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Stack;
 
 public class ValidParanthesis {
     public static void main(String[] args) {
-        System.out.println(isValid("()[]"));
+        System.out.println(isValid("([)]"));
     }
 
     private static boolean isValid(String s) {
-        Map<Character, Integer> paranthesisMap = new HashMap<>();
-        paranthesisMap.put('(', 0);
-        paranthesisMap.put(')', 1);
-        paranthesisMap.put('[', 2);
-        paranthesisMap.put(']', 3);
-        paranthesisMap.put('{', 4);
-        paranthesisMap.put('}', 5);
-
-        if (s.length() == 1) return false;
-
-        for (int i = 0; i < s.length() - 1; i++) {
-            if (i == 0 && paranthesisMap.get(s.charAt(i)) / 2 != 0) {
-                return false;
+        if (s.length() % 2 != 0)
+            return false;
+        if (s.length() == 0)
+            return true;
+        Map<Character, Character> paranthesisMap = new HashMap<>();
+        paranthesisMap.put('(', ')');
+        paranthesisMap.put('[', ']');
+        paranthesisMap.put('{', '}');
+        Stack<Character> stack = new Stack<>();
+        stack.push(s.charAt(0));
+        int count = 1;
+        while (count != s.length()) {
+            if (!stack.isEmpty() && paranthesisMap.get(stack.peek()) != null && (s.charAt(count) == paranthesisMap.get(stack.peek()))) {
+                stack.pop();
+            } else {
+                stack.push(s.charAt(count));
             }
-            if (i + 1 <= s.length() && i % 2 == 0) {
-                int val = paranthesisMap.get(s.charAt(i));
-                int nextVal = paranthesisMap.get(s.charAt(i + 1));
-                if (nextVal - val != 1) return false;
-                else i++;
-            }
+            count++;
         }
-        return true;
+        return stack.isEmpty();
     }
 }

@@ -7,9 +7,17 @@
 6. Converting integer to binary String: Integer.toBinaryString(int i)
 7. To get difference in bits between two integers use XOR operation (ex: 4 ^ 1)
 
+### Bitwise Operations:
+| A | B | A or B | A&B | A^B | ~A |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+|0|0|0|0|0|1|
+|1|0|1|0|1|0|
+|0|1|1|0|1|0|
+|1|1|1|1|0|0|
 
 ### Problem Namings:
 1. Hamming Distance - Bitwise difference between two integers.
+2. Anagrams - All characters in string A must be present in String B
 
 
 ## TREES:

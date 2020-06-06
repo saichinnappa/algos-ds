@@ -10,7 +10,8 @@ public class Solution {
 //        System.out.println(solution.inplaceReverse("hello"));
 //        System.out.println(solution.replaceSpaces("Mr John Smith    ", 13));
 //        System.out.println(solution.isCombinationUsingCharacterCount("abc", "cba"));
-        System.out.println(solution.compress("aabcccccaaa"));
+//        System.out.println(solution.compress("aabcccccaaa"));
+        System.out.println(solution.isSubstringIntelligentWay("waterbottle", "erbottlewat"));
     }
 
     public boolean isUnique(String s) {
@@ -110,6 +111,29 @@ public class Solution {
         string.append(charArray[charArray.length - 1]);
         string.append(count);
         return string.toString().length() > word.length() ? word : string.toString();
+    }
+
+    boolean isSubstring(String s1, String s2) {
+        char firstChar = s1.charAt(0);
+        StringBuilder result = new StringBuilder();
+        int firstCharIndexRotatedString = -1;
+        for (int i = 0; i < s2.toCharArray().length; i++) {
+            if (s2.charAt(i) == firstChar) {
+                firstCharIndexRotatedString = i;
+            }
+        }
+        if (firstCharIndexRotatedString == -1) {
+            return false;
+        } else {
+            result.append(s2.substring(firstCharIndexRotatedString));
+            result.append(s2.substring(0, firstCharIndexRotatedString));
+        }
+        return result.toString().equals(s1);
+    }
+
+    boolean isSubstringIntelligentWay(String s1, String s2) {
+        String newString = s1 + s1;
+        return newString.contains(s2);
     }
 
 
