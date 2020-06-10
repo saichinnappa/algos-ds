@@ -52,25 +52,7 @@ class LinkedLists{
     System.out.print("null");
   }
 
-  int kthLastElement(int k){
-  int kthValue = 0;
-  Node currentNode = head;
-    if(length < k){
-        System.out.println("Invalid k value");
-    }
-    else if(k == 1){
-        return  currentNode.data;
-    }
-    else{
-        int nodeIndexTracker = 0;
-        while(nodeIndexTracker != (length-k)){
-            nodeIndexTracker++;
-            currentNode = currentNode.next();
-        }
-        kthValue = currentNode.data;
-    }
-        return kthValue;
-  }
+;
 }
 
 public class Solution{

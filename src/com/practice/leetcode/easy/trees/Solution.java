@@ -35,20 +35,18 @@ public class Solution {
         TreeNode root = new TreeNode();
         root.val = 5;
         TreeNode node1 = new TreeNode();
-        node1.val = 20;
+        node1.val = 4;
         TreeNode node2 = new TreeNode();
-        node2.val = 2;
+        node2.val = 6;
         TreeNode node3 = new TreeNode();
-        node3.val = 40;
+        node3.val = 3;
         TreeNode node4 = new TreeNode();
-        node4.val = 52;
+        node4.val = 9;
         root.left = node1;
-
-        node1.left = node2;
-        node1.right = node3;
-
-        node3.right = node4;
-        System.out.println(solution.increasingBST(root));
+        root.right = node2;
+        node2.left = node3;
+        node2.right = node4;
+        System.out.println(solution.maxDepth(root));
     }
 
     public TreeNode increasingBST(TreeNode root) {
@@ -105,5 +103,17 @@ public class Solution {
             return searchBST(right, val);
         }
         return null;
+    }
+
+
+    public int maxDepth(TreeNode root) {
+        if (root == null)
+            return 0;
+        else {
+            int left = maxDepth(root.left);
+            int right = maxDepth(root.right);
+            return Math.max(left, right) + 1;
+        }
+
     }
 }

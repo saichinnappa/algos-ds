@@ -3,6 +3,8 @@ package com.practice.leetcode.easy.arrays;
 import java.util.*;
 
 public class Misc {
+    static Map<Integer, Integer> map = new HashMap<>();
+
     public static void main(String[] args) {
 //        int[] arr1 = {1, 2, 3, 4, 5};
 //        int[] arr2 = {1, 2, 5, 7, 9};
@@ -15,7 +17,7 @@ public class Misc {
 //        int[] nums = {1, 7, 4, 7, 1, 9, 4, 8, 8};
 //        System.out.println(Arrays.toString(minSubsequence(nums).toArray()));
         int[] arr = {1, 2, 2, 1, 1, 3};
-        System.out.println(uniqueOccurrences(arr));
+        System.out.println(climbStairs(4));
     }
 
     static List<Integer> intersection3Arrays(int[] arr1, int[] arr2, int[] arr3) {
@@ -136,4 +138,36 @@ public class Misc {
         Set<Integer> countSet = new HashSet<>(countMap.values());
         return countMap.size() == countSet.size();
     }
+
+    public static int climbStairs(int n) {
+        if (map.containsKey(n))
+            return map.get(n);
+        if (n == 1)
+            return 1;
+        else if (n == 2)
+            return 2;
+        int sum = 0;
+        for (int i = 1; i < n; i++) {
+            map.put(n - i, climbStairs(n - i));
+        }
+        return map.get(n);
+    }
+
+    private int getNum(int row, int col) {
+        if (row == 0 || col == 0 || row == col) {
+            return 1;
+        }
+        return getNum(row - 1, col - 1) + getNum(row - 1, col);
+    }
+
+    public List<Integer> getRow(int rowIndex) {
+        List<Integer> ans = new ArrayList<>();
+
+        for (int i = 0; i <= rowIndex; i++) {
+            ans.add(getNum(rowIndex, i));
+        }
+
+        return ans;
+    }
+
 }

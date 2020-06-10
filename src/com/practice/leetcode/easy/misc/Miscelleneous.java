@@ -10,8 +10,10 @@ public class Miscelleneous {
 //        System.out.println(arrayPairSum(nums));
         Miscelleneous miscelleneous = new Miscelleneous();
 //        System.out.println(miscelleneous.countPrimes(10));
-        System.out.println(miscelleneous.getSum(2, 3));
+//        System.out.println(miscelleneous.getSum(2, 3));
+        miscelleneous.maxProfit(new int[]{7, 1, 5, 3, 6, 4});
     }
+
 
     public static int[] diStringMatch(String S) {
         int n = S.length();
@@ -103,4 +105,39 @@ public class Miscelleneous {
     public int getSum(int a, int b) {
         return a ^ b;
     }
+
+    void reverseArray(int[] nums) {
+        int start = 0;
+        int end = nums.length - 1;
+        while (start < end) {
+            int temp = nums[end];
+            nums[end] = nums[start];
+            nums[start] = temp;
+            start++;
+            end--;
+        }
+        System.out.println(Arrays.toString(nums));
+    }
+
+    public int maxProfit(int[] prices) {
+        Map<Integer, Integer> stockPrices = new HashMap<>();
+        for (int i = 0; i < prices.length; i++) {
+            stockPrices.put(prices[i], i);
+        }
+        Arrays.sort(prices);
+
+        int profit = 0;
+        int day = 0;
+        for (int i = prices.length - 1; i > 0; i--) {
+            int lowestPrice = prices[day];
+            int lowestPriceDay = stockPrices.get(prices[day]);
+            if (lowestPriceDay < stockPrices.get(prices[i])) {
+                profit = prices[i] - lowestPrice;
+                day++;
+            }
+        }
+        System.out.println(profit);
+        return profit;
+    }
+
 }
