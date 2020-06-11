@@ -87,5 +87,4 @@ public class Traversals {
         postOrder(root.right);
         System.out.print(root.val + " ");
     }
-
 }
