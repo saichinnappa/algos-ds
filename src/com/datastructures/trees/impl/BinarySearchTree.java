@@ -1,125 +1,175 @@
 package com.datastructures.trees.impl;
 
-public class BinarySearchTree {
-
+class BinarySearchTree {
     Node root;
 
     public static void main(String[] args) {
-        BinarySearchTree binarySearchTree = new BinarySearchTree();
-//        binarySearchTree.insertIterative(50);
-//        binarySearchTree.insertIterative(30);
-//        binarySearchTree.insertIterative(70);
-//        binarySearchTree.insertIterative(10);
-//        binarySearchTree.print(binarySearchTree.root);
-
         Node root = new Node(50);
-        binarySearchTree.root = root;
         Node node1 = new Node(30);
-        binarySearchTree.insertRecursive(root, node1);
         Node node2 = new Node(70);
-        binarySearchTree.insertRecursive(root, node2);
         Node node3 = new Node(10);
+        Node node4 = new Node(40);
+        Node node5 = new Node(60);
+        Node node6 = new Node(80);
+        Node node7 = new Node(5);
+        Node node8 = new Node(85);
+        BinarySearchTree binarySearchTree = new BinarySearchTree();
+        /* Iterative insertion
+        binarySearchTree.insertNodeIterative(root, node1);
+        binarySearchTree.insertNodeIterative(root, node2);
+        binarySearchTree.insertNodeIterative(root, node3);
+        binarySearchTree.insertNodeIterative(root, node4);
+        binarySearchTree.insertNodeIterative(root, node5);
+        binarySearchTree.insertNodeIterative(root, node6);
+         */
+        /*
+        50 30 10 40 70 60 80
+            Recursive Insertion
+         */
+        binarySearchTree.insertRecursive(root, node1);
+        binarySearchTree.insertRecursive(root, node2);
         binarySearchTree.insertRecursive(root, node3);
+        binarySearchTree.insertRecursive(root, node4);
+        binarySearchTree.insertRecursive(root, node5);
+        binarySearchTree.insertRecursive(root, node6);
+        binarySearchTree.insertRecursive(root, node7);
+        binarySearchTree.insertRecursive(root, node8);
         binarySearchTree.print(root);
-        binarySearchTree.delete(node3);
+
+        System.out.println(binarySearchTree.delete(root, node7));
+        System.out.println(binarySearchTree.delete(root, node8));
         binarySearchTree.print(root);
-        System.out.println(binarySearchTree.searchRecursive(root, 10));
-//        System.out.println(binarySearchTree.searchIterative(root, 70));
 
     }
 
-    boolean searchRecursive(Node root, int data) {
-        if (root != null) {
-            if (root.value == data) {
-                return true;
-            } else if (data <= root.value) {
-                return searchRecursive(root.leftChild, data);
-            } else {
-                return searchRecursive(root.rightChild, data);
-            }
-        }
-        return false;
+    public Node buildTree() {
+        Node root = new Node(50);
+        Node node1 = new Node(30);
+        Node node2 = new Node(70);
+        Node node3 = new Node(10);
+        Node node4 = new Node(40);
+        Node node5 = new Node(60);
+        Node node6 = new Node(80);
+        Node node7 = new Node(5);
+        Node node8 = new Node(85);
+        BinarySearchTree binarySearchTree = new BinarySearchTree();
+        binarySearchTree.insertRecursive(root, node1);
+        binarySearchTree.insertRecursive(root, node2);
+        binarySearchTree.insertRecursive(root, node3);
+        binarySearchTree.insertRecursive(root, node4);
+        binarySearchTree.insertRecursive(root, node5);
+        binarySearchTree.insertRecursive(root, node6);
+        binarySearchTree.insertRecursive(root, node7);
+        binarySearchTree.insertRecursive(root, node8);
+        binarySearchTree.print(root);
+        return root;
     }
 
-    boolean searchIterative(Node root, int data) {
-        while (root != null) {
-            if (data == root.value) {
-                return true;
-            }
-            if (data < root.value) {
-                root = root.leftChild;
-            }
-            if (data > root.value) {
-                root = root.rightChild;
-            }
-        }
-        return false;
-    }
-
-    void insertIterative(int data) {
+    Node insertNodeIterative(Node root, Node newNode) {
         if (root == null) {
-            root = new Node(data);
-        } else {
-            Node currentNode = root;
-            Node newNode = new Node(data);
-            while (currentNode != newNode) {
-                Node leftChild = currentNode.leftChild;
-                Node rightChild = currentNode.rightChild;
-                if (leftChild != null && newNode.value <= leftChild.value) {
-                    currentNode = leftChild;
-                }
-                if (rightChild != null && newNode.value > rightChild.value) {
-                    currentNode = rightChild;
-                }
-                if (newNode.value > currentNode.value) {
-                    currentNode.rightChild = newNode;
-                } else {
-                    currentNode.leftChild = newNode;
-                }
-                currentNode = newNode;
-            }
+            this.root = newNode;
+            return newNode;
         }
-    }
-
-    void insertRecursive(Node root, Node newNode) {
-        if (root == null)
-            return;
-        else {
-            if (newNode.value <= root.value) {
-                insertRecursive(root.leftChild, newNode);
-                if (root.leftChild == null)
-                    root.leftChild = newNode;
+        while (root != null) {
+            if (newNode.val <= root.val) {
+                if (root.left == null) {
+                    root.left = newNode;
+                    return root;
+                }
+                root = root.left;
             } else {
-                insertRecursive(root.rightChild, newNode);
-                if (root.rightChild == null)
-                    root.rightChild = newNode;
+                if (root.right == null) {
+                    root.right = newNode;
+                    return root;
+                }
+                root = root.right;
             }
         }
+        return root;
     }
 
-    void delete(Node node) {
+    Node insertRecursive(Node root, Node newNode) {
+        if (root == null)
+            return newNode;
+        if (newNode.val <= root.val) {
+            root.left = insertRecursive(root.left, newNode);
+        } else {
+            root.right = insertRecursive(root.right, newNode);
+        }
+        return root;
+    }
+
+
+    boolean searchIterative(Node root, int val) {
+        if (root == null)
+            return false;
+        if (root.val == val)
+            return true;
+        while (root != null) {
+            if (val < root.val) {
+                root = root.left;
+            } else if (val > root.val) {
+                root = root.right;
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    boolean searchRecursive(Node root, int val) {
+        if (root == null)
+            return false;
+        if (root.val == val)
+            return true;
+        else if (val < root.val)
+            return searchRecursive(root.left, val);
+        else
+            return searchRecursive(root.right, val);
+    }
+
+    boolean delete(Node root, Node delNode) {
+        if (root == null)
+            return false;
+        //if(root.val == delNode.val)
         Node parentNode = root;
         while (root != null) {
-            if (node.value == parentNode.leftChild.value) {
-                parentNode.leftChild = null;
-            } else if (node.value == parentNode.rightChild.value) {
-                parentNode.rightChild = null;
-            }
-            if (node.value < root.value) {
+            if (delNode.val < root.val) {
                 parentNode = root;
-                root = root.leftChild;
+                root = root.left;
+            } else if (delNode.val > root.val) {
+                parentNode = root;
+                root = root.right;
             } else {
-                parentNode = root;
-                root = root.rightChild;
+                Node leftChild = root.left;
+                Node rightChild = root.right;
+                if (leftChild == null && rightChild == null) {  // if the node searching is a leaf node, set parent left or right to null
+                    if (root.val < parentNode.val)
+                        parentNode.left = null;
+                    else
+                        parentNode.right = null;
+                } else if (leftChild == null) {
+                    if (root.val > parentNode.val)
+                        parentNode.right = root.right;
+                    else
+                        parentNode.left = root.right;
+                } else if (rightChild == null) {
+                    if (root.val > parentNode.val)
+                        parentNode.right = root.left;
+                    else
+                        parentNode.left = root.left;
+                }
+                return true;
             }
         }
+        return false;
     }
 
     void print(Node root) {
         if (root == null)
             return;
-        System.out.println(root.value);
-        print(root.leftChild);
-        print(root.rightChild);
+        System.out.print(root.val + " ");
+        print(root.left);
+        print(root.right);
     }
 }
