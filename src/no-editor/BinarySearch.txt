@@ -1,0 +1,18 @@
+-- Search target element
+public int search(int[] nums, int target) {
+  int low = 0;
+  int high = nums.length -1;
+  return recursiveBinarySearch(nums, low, high, target);
+}
+
+int recursiveBinarySearch(int[] nums, int low, int high, int target){
+    if(low > high)
+      return -1;
+    int mid = low + (high-low)/2;
+    if(nums[mid] == target)
+      return mid;
+    if(target > nums[mid])
+      return recursiveBinarySearch(nums, mid+1, high, target);
+    else
+      return recursiveBinarySearch(nums, mid, mid-1, target);
+}

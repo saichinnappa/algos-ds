@@ -47,7 +47,7 @@ Total number of nodes in a binary tree: 2^(h+1) -1
 Properties:
 1. Left child must be less than root.
 2. Right child must be greater than root.<br>
-***|left-child| <= root < |right-child|*** 
+***|left-child| <= root < |right-child|***
 
 Insertion:
 1. Can be done Iterative or Recursive approach.
@@ -60,10 +60,19 @@ Scenario A: Delete leaf node
 Scenario B: Delete parent node with one child.
 1. Find the parent node to be deleted.
 2. Link the child node of the parent node to be deleted with parent of the parent node.
-3. Delete actual parent node. 
+3. Delete actual parent node.
 
 Scenario C: Delete parent node with two children
 1. Find parent node to be deleted.
 2. Traverse all the way to down to the last parent node.
 3. Swap the parent node to be deleted with left child of the parent node from step2.
 4. Delete the child node.
+
+
+Traversals:
+1. PREORDER: ROOT -> LEFT -> RIGHT
+2. INORDER: LEFT -> ROOT -> RIGHT
+2. POSTORDER: LEFT -> RIGHT -> ROOT
+
+Preorder is equal to depth first search. We use Stacks to implement it.
+Inorder always gives ascending order.

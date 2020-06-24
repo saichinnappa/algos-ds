@@ -34,12 +34,12 @@ public class Solution {
 //        node3.children = childrenOfThree;
 //        System.out.println(Arrays.toString(solution.postorder(root).toArray()));
 
-//        TreeNode root = new TreeNode();
-//        root.val = 1;
-//        TreeNode node1 = new TreeNode();
-//        node1.val = 0;
-//        TreeNode node2 = new TreeNode();
-//        node2.val = 1;
+        TreeNode root = new TreeNode();
+        root.val = 1;
+        TreeNode node1 = new TreeNode();
+        node1.val = 0;
+        TreeNode node2 = new TreeNode();
+        node2.val = 2;
 //        TreeNode node3 = new TreeNode();
 //        node3.val = 0;
 //        TreeNode node4 = new TreeNode();
@@ -48,14 +48,15 @@ public class Solution {
 //        node5.val = 0;
 //        TreeNode node6 = new TreeNode();
 //        node6.val = 1;
-//        root.left = node1;
-//        root.right = node2;
+        root.left = node1;
+        root.right = node2;
 //        node1.left = node3;
 //        node1.right = node4;
 //        node2.left = node5;
 //        node2.right = node6;
 //        System.out.println(solution.sumRootToLeaf(root));
-        TreeNode root = solution.sortedArrayToBST(new int[]{0, 1, 2, 3, 4, 5});
+//        TreeNode root = solution.sortedArrayToBST(new int[]{0, 1, 2, 3, 4, 5});
+
         solution.print(root);
     }
 
@@ -198,5 +199,15 @@ public class Solution {
         System.out.print(root.val + " ");
         print(root.left);
         print(root.right);
+    }
+
+    public TreeNode trimBST(TreeNode root, int L, int R) {
+        if (root == null) return root;
+        if (root.val > R) return trimBST(root.left, L, R);
+        if (root.val < L) return trimBST(root.right, L, R);
+
+        root.left = trimBST(root.left, L, R);
+        root.right = trimBST(root.right, L, R);
+        return root;
     }
 }
